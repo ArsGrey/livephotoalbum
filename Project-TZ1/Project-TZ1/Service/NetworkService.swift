@@ -11,6 +11,7 @@ protocol NetworkServiceProtocol {
     func fetchData<T: Codable>(url: URL, completion: @escaping (Result<[T], Error>) -> Void)
     func fetchData<T: Codable>(url: URL, completion: @escaping (Result<T, Error>) -> Void)
     func downloadData(url: URL, group: DispatchGroup, completion: @escaping (Result<URL, Error>) -> Void)
+    func fetchData(url: URL, group: DispatchGroup, comppletion: @escaping (Result<Data, Error>) -> Void)
 }
 
 enum NetworkError: Error {
@@ -92,6 +93,25 @@ class NetworkService: NetworkServiceProtocol {
                 }
                 completion(.success(url))
             }).resume()
+        }
+    }
+    
+    func fetchData(url: URL, group: DispatchGroup, comppletion: @escaping (Result<Data, Error>) -> Void) {
+        backgroundQueue.async(group: group) { [weak self] in
+            group.enter()
+            self?.session.dataTask(with: url) { data, _, error in
+                if let error = error {
+                    comppletion(.failure(error))
+                    group.leave()
+                }
+                guard let data = data else {
+                    comppletion(.failure(NetworkError.emptyData))
+                    group.leave()
+                    return
+                }
+                comppletion(.success(data))
+                group.leave()
+            }.resume()
         }
     }
 }

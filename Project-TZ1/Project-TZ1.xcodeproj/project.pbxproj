@@ -57,6 +57,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3B6759225F665D100C919B1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A3FEAED125C46B5300246569 /* ModuleBuilder.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A3B6759425F665F000C919B1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A34259F725DF282100A39ABE /* API.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		A3FEAE9E25C464B500246569 = {
 			isa = PBXGroup;
 			children = (
@@ -78,15 +94,14 @@
 			children = (
 				A3FEAEAA25C464B500246569 /* AppDelegate.swift */,
 				A3FEAEAC25C464B500246569 /* SceneDelegate.swift */,
-				A3FEAED125C46B5300246569 /* ModuleBuilder.swift */,
+				A3B6759225F665D100C919B1 /* Helpers */,
 				A3FEAEFF25C845E700246569 /* DetailModule */,
 				A3FEAECC25C46A4E00246569 /* MainModule */,
 				A3FEAEE425C5957B00246569 /* Cells */,
-				A3FEAED825C4ADE100246569 /* ServiceLayer */,
+				A3FEAED825C4ADE100246569 /* Service */,
 				A3FEAEB325C464B700246569 /* Assets.xcassets */,
 				A3FEAEB525C464B700246569 /* LaunchScreen.storyboard */,
 				A3FEAEB825C464B700246569 /* Info.plist */,
-				A34259F725DF282100A39ABE /* API.swift */,
 			);
 			path = "Project-TZ1";
 			sourceTree = "<group>";
@@ -126,12 +141,13 @@
 			path = MainModule;
 			sourceTree = "<group>";
 		};
-		A3FEAED825C4ADE100246569 /* ServiceLayer */ = {
+		A3FEAED825C4ADE100246569 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				A3FEAED525C4A61B00246569 /* NetworkService.swift */,
+				A3B6759425F665F000C919B1 /* API */,
 			);
-			path = ServiceLayer;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		A3FEAEE425C5957B00246569 /* Cells */ = {

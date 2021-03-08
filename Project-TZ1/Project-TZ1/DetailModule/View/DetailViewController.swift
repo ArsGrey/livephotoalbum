@@ -84,16 +84,16 @@ class DetailViewController: UIViewController, DetailViewProtocol {
     }
     
     @IBAction func saveButton() {
-        PHPhotoLibrary.shared().performChanges({
-            guard let filePhotoUrl = self.presenter.filePhotoUrl,
+        PHPhotoLibrary.shared().performChanges({ [weak self] in
+            guard let self = self,
+                  let filePhotoUrl = self.presenter.filePhotoUrl,
                   let fileMovieUrl = self.presenter.fileMovieUrl else { return }
             let request = PHAssetCreationRequest.forAsset()
             request.addResource(with: PHAssetResourceType.photo, fileURL: filePhotoUrl, options: nil)
             request.addResource(with: PHAssetResourceType.pairedVideo, fileURL: fileMovieUrl, options: nil)
+            DispatchQueue.main.async {
+                self.showAlert(message: "Saved")
+            }
         })
-        { (success, error) in
-            print(success)
-            print(error?.localizedDescription ?? "Error")
-        }
     }
 }
