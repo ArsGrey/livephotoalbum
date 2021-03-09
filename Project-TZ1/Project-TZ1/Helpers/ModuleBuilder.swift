@@ -12,7 +12,7 @@ protocol Builder {
     static func createDetailModule(photo: Photos) -> UIViewController
 }
 
-class ModuleBuilder: Builder {
+final class ModuleBuilder: Builder {
     static func createMainModule() -> UIViewController {
         let mainViewController = UIStoryboard(name: "MainViewController", bundle: nil).instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
         let networkService = NetworkService()

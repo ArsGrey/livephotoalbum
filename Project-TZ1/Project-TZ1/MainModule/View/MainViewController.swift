@@ -7,13 +7,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, MainViewProtocol {
+final class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, MainViewProtocol {
     
-    @IBOutlet weak var loader: UIActivityIndicatorView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var loader: UIActivityIndicatorView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     var presenter: MainViewPresenterProtocol!
-    var collectionData: [Data] = []
+    var collectionData = MainViewModel(data: [])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
-        let data = collectionData[indexPath.item]
+        let data = collectionData.data[indexPath.item]
         cell.photoView.contentMode = .scaleAspectFill
         cell.photoView.clipsToBounds = true
         cell.photoView.image = nil
@@ -62,7 +62,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     //MARK: -> MainViewProtocol
     func showCollection(data: [Data]) {
-        collectionData = data
+        collectionData.data = data
         collectionView.reloadData()
         loader.stopAnimating()
         loader.isHidden = true

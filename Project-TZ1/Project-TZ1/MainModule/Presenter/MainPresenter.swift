@@ -47,20 +47,18 @@ class MainPresenter: MainViewPresenterProtocol {
     
     private func fetchData() {
         var dataList = [Data]()
-        for photo in photos {
-            guard let url = URL(string: photo.small_url) else { continue }
+        photos.forEach {
+            guard let url = URL(string: $0.small_url) else { return }
             networkService.fetchData(url: url, group: dispatchGroup) {
                 switch $0 {
-                case .failure:
-                    return
+                case .failure: return
                 case .success(let data):
                     dataList.append(data)
                 }
             }
         }
         dispatchGroup.notify(queue: .main) { [weak self] in
-            guard let self = self else { return }
-            self.view?.showCollection(data: dataList)
+            self?.view?.showCollection(data: dataList)
         }
     }
 }

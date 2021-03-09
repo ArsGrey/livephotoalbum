@@ -30,14 +30,14 @@ extension NetworkError: LocalizedError {
     }
 }
 
-class NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
     
     private let session = URLSession.shared
     private let backgroundQueue = DispatchQueue(label: "networking", qos: .background)
     
     func fetchData<T: Codable>(url: URL, completion: @escaping (Result<[T], Error>) -> Void) {
         backgroundQueue.async { [weak self] in
-            self?.session.dataTask(with: url) { data, response, error in
+            self?.session.dataTask(with: url) { data, _, error in
                 if let error = error {
                     completion(.failure(error))
                 }
@@ -60,7 +60,7 @@ class NetworkService: NetworkServiceProtocol {
     
     func fetchData<T: Codable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) {
         backgroundQueue.async { [weak self] in
-            self?.session.dataTask(with: url) { data, response, error in
+            self?.session.dataTask(with: url) { data, _, error in
                 if let error = error {
                     completion(.failure(error))
                 }
@@ -83,7 +83,7 @@ class NetworkService: NetworkServiceProtocol {
     
     func downloadData(url: URL, group: DispatchGroup, completion: @escaping (Result<URL, Error>) -> Void) {
         backgroundQueue.async(group: group) { [weak self] in
-            self?.session.downloadTask(with: url, completionHandler: { (url, response, error) in
+            self?.session.downloadTask(with: url, completionHandler: { (url, _, error) in
                 if let error = error {
                     completion(.failure(error))
                 }

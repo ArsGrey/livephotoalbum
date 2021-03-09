@@ -8,10 +8,10 @@
 import UIKit
 import PhotosUI
 
-class DetailViewController: UIViewController, DetailViewProtocol {
+final class DetailViewController: UIViewController, DetailViewProtocol {
     
-    @IBOutlet weak var mediaView: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var mediaView: UIView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     var presenter: DetailViewPresenterProtocol!
     
     override func viewDidLoad() {
