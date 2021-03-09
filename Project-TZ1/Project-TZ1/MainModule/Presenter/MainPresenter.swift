@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MainViewProtocol: class {
-    func showCollection(data: [Data])
+    func showCollection(data: MainViewModel)
     func showError(error: Error)
 }
 
@@ -58,7 +58,7 @@ class MainPresenter: MainViewPresenterProtocol {
             }
         }
         dispatchGroup.notify(queue: .main) { [weak self] in
-            self?.view?.showCollection(data: dataList)
+            self?.view?.showCollection(data: MainViewModel(data: dataList))
         }
     }
 }

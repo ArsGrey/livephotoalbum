@@ -13,13 +13,12 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet private weak var collectionView: UICollectionView!
     
     var presenter: MainViewPresenterProtocol!
-    var collectionData = MainViewModel(data: [])
+    var collectionData: [Data] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loader.startAnimating()
         presenter.getPhotos()
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainCollectionViewCell")
@@ -39,7 +38,7 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
-        let data = collectionData.data[indexPath.item]
+        let data = collectionData[indexPath.item]
         cell.photoView.contentMode = .scaleAspectFill
         cell.photoView.clipsToBounds = true
         cell.photoView.image = nil
@@ -61,8 +60,8 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     }
     
     //MARK: -> MainViewProtocol
-    func showCollection(data: [Data]) {
-        collectionData.data = data
+    func showCollection(data: MainViewModel) {
+        collectionData = data.data
         collectionView.reloadData()
         loader.stopAnimating()
         loader.isHidden = true
