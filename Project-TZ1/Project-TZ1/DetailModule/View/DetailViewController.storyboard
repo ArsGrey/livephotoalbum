@@ -18,12 +18,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9t1-kW-DG5">
-                                <rect key="frame" x="0.0" y="5" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="414" id="15K-0S-mwL"/>
-                                    <constraint firstAttribute="height" constant="896" id="IwG-dr-UHz"/>
-                                </constraints>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mD0-fx-VkI">
                                 <rect key="frame" x="157" y="403" width="100" height="100"/>
@@ -50,11 +46,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="mD0-fx-VkI" firstAttribute="centerY" secondItem="O8O-vd-unM" secondAttribute="centerY" id="0Lc-99-BJI"/>
+                            <constraint firstItem="O8O-vd-unM" firstAttribute="bottom" secondItem="Vi9-sI-f05" secondAttribute="bottom" constant="70" id="9hV-eL-wJb"/>
                             <constraint firstItem="mD0-fx-VkI" firstAttribute="centerX" secondItem="O8O-vd-unM" secondAttribute="centerX" id="NfB-fZ-8HS"/>
-                            <constraint firstItem="9t1-kW-DG5" firstAttribute="centerX" secondItem="O8O-vd-unM" secondAttribute="centerX" id="WL6-zn-b8q"/>
-                            <constraint firstItem="Vi9-sI-f05" firstAttribute="leading" secondItem="9t1-kW-DG5" secondAttribute="trailing" constant="-222" id="leQ-j1-cLB"/>
-                            <constraint firstItem="Vi9-sI-f05" firstAttribute="top" secondItem="9t1-kW-DG5" secondAttribute="bottom" constant="-136" id="qes-Q1-YKc"/>
-                            <constraint firstItem="9t1-kW-DG5" firstAttribute="centerY" secondItem="O8O-vd-unM" secondAttribute="centerY" id="xdk-hP-8Pc"/>
+                            <constraint firstItem="9t1-kW-DG5" firstAttribute="leading" secondItem="O8O-vd-unM" secondAttribute="leading" id="VGM-OO-lPI"/>
+                            <constraint firstItem="9t1-kW-DG5" firstAttribute="trailing" secondItem="O8O-vd-unM" secondAttribute="trailing" id="gKb-X8-Bkg"/>
+                            <constraint firstAttribute="bottom" secondItem="9t1-kW-DG5" secondAttribute="bottom" id="kje-dG-SKt"/>
+                            <constraint firstItem="Vi9-sI-f05" firstAttribute="centerX" secondItem="BZu-tI-tJF" secondAttribute="centerX" id="nIc-Dy-N7b"/>
+                            <constraint firstItem="9t1-kW-DG5" firstAttribute="top" secondItem="BZu-tI-tJF" secondAttribute="top" id="nzH-7k-npd"/>
                         </constraints>
                     </view>
                     <connections>

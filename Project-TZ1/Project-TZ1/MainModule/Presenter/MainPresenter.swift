@@ -8,25 +8,25 @@
 import Foundation
 
 protocol MainViewProtocol: class {
-    func succes()
-    func failure(error: Error)
+    func showCollection(data: MainViewModel)
+    func showError(error: Error)
 }
 
 protocol MainViewPresenterProtocol: class {
     func getPhotos()
-    var photos: [Photos]? { get set }
+    var photos: [Photos] { get set }
 }
 
 class MainPresenter: MainViewPresenterProtocol {
     
     weak var view: MainViewProtocol?
     let networkService: NetworkServiceProtocol
-    var photos: [Photos]?
+    var photos: [Photos] = []
+    private let dispatchGroup = DispatchGroup()
     
     init(view: MainViewProtocol, networkService: NetworkServiceProtocol ) {
         self.view = view
         self.networkService = networkService
-        getPhotos()
     }
     
     func getPhotos() {
@@ -34,15 +34,31 @@ class MainPresenter: MainViewPresenterProtocol {
         networkService.fetchData(url: url) { [weak self] (result: Result<[Photos], Error>) in
             switch result {
             case .success(let photos):
-                DispatchQueue.main.async {
-                    self?.photos = photos
-                    self?.view?.succes()
-                }
+                self?.photos = photos
+                self?.fetchData()
+                
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.view?.failure(error: error)
+                    self?.view?.showError(error: error)
                 }
             }
+        }
+    }
+    
+    private func fetchData() {
+        var dataList = [Data]()
+        photos.forEach {
+            guard let url = URL(string: $0.small_url) else { return }
+            networkService.fetchData(url: url, group: dispatchGroup) {
+                switch $0 {
+                case .failure: return
+                case .success(let data):
+                    dataList.append(data)
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.view?.showCollection(data: MainViewModel(data: dataList))
         }
     }
 }

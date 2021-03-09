@@ -7,21 +7,18 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, MainViewProtocol {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var loader: UIActivityIndicatorView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     var presenter: MainViewPresenterProtocol!
+    var collectionData: [Data] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let layout = UICollectionViewFlowLayout()
-//        layout.minimumLineSpacing = 10
-//        layout.minimumInteritemSpacing = 10
-//        layout.sectionInset = .init(top: 10, left: 10, bottom: 10, right: 10)
-//        layout.itemSize = CGSize(width: 120, height: 120)
-//        collectionView.collectionViewLayout = layout
-        
+        loader.startAnimating()
+        presenter.getPhotos()
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MainCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MainCollectionViewCell")
@@ -33,46 +30,46 @@ class MainViewController: UIViewController {
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
-}
-
-extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    //MARK: -> UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.photos?.count ?? 0
+        return presenter.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
-        guard let photos = presenter.photos?[indexPath.item].large_url else { return cell }
+        let data = collectionData[indexPath.item]
         cell.photoView.contentMode = .scaleAspectFill
         cell.photoView.clipsToBounds = true
         cell.photoView.image = nil
         cell.layer.cornerRadius = cell.frame.height / 2
-        cell.configure(with: photos)
+        cell.set(data: data)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        return CGSize(width: 120, height: 120)
-    }
-}
-
-extension MainViewController: UICollectionViewDelegate {
+    //MARK: -> UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let photo = presenter.photos?[indexPath.item] else { return }
+        let photo = presenter.photos[indexPath.item]
         let detailViewController = ModuleBuilder.createDetailModule(photo: photo)
-//        navigationController?.pushViewController(detailViewController, animated: true)
         self.present(detailViewController, animated: true, completion: nil)
     }
-}
-
-extension MainViewController: MainViewProtocol {
-    func succes() {
-        collectionView.reloadData()
+    
+    //MARK: -> UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 120, height: 120)
     }
     
-    func failure(error: Error) {
+    //MARK: -> MainViewProtocol
+    func showCollection(data: MainViewModel) {
+        collectionData = data.data
+        collectionView.reloadData()
+        loader.stopAnimating()
+        loader.isHidden = true
+    }
+    
+    func showError(error: Error) {
         showAlert(message: error.localizedDescription)
+        loader.stopAnimating()
+        loader.isHidden = true
     }
 }
-
