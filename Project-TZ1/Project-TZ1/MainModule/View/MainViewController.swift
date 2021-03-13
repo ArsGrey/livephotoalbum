@@ -12,7 +12,7 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     @IBOutlet private weak var loader: UIActivityIndicatorView!
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    var presenter: MainViewPresenterProtocol!
+    var presenter: MainPresenterProtocol!
     var collectionData: [Data] = []
     
     override func viewDidLoad() {
@@ -50,7 +50,8 @@ final class MainViewController: UIViewController, UICollectionViewDataSource, UI
     //MARK: -> UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = presenter.photos[indexPath.item]
-        let detailViewController = ModuleBuilder.createDetailModule(photo: photo)
+        let detailViewController = ModuleBuilder.createDetailModule()
+        detailViewController.set(photo: photo)
         self.present(detailViewController, animated: true, completion: nil)
     }
     

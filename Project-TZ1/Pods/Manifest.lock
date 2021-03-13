@@ -1,0 +1,20 @@
+PODS:
+  - DITranquillity (4.1.7):
+    - SwiftLazy (>= 1.1.6)
+  - SwiftLazy (1.1.7)
+
+DEPENDENCIES:
+  - DITranquillity
+
+SPEC REPOS:
+  trunk:
+    - DITranquillity
+    - SwiftLazy
+
+SPEC CHECKSUMS:
+  DITranquillity: 1cc4481cb316b8f142248d5dfd6e545d73714e7c
+  SwiftLazy: dcb1edc6c2b633ba2e68f28554d9dd6d1c0bfd13
+
+PODFILE CHECKSUM: 9a502975c4586992e73b40100286ff40c5750f89
+
+COCOAPODS: 1.10.1
