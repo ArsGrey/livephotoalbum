@@ -43,7 +43,6 @@ class DetailPresenter: DetailPresenterProtocol {
     var fileMovieUrl: URL?
     private let dispatchGroup = DispatchGroup()
     
-    
     init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }

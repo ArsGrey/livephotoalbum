@@ -10,10 +10,10 @@ import UIKit
 extension UIViewController {
     class func loadFromDiStoryboard() -> Self {
         let storyboard: UIStoryboard = ApplicationDI.container.resolve(tag: self)
-        if let vc = storyboard.instantiateInitialViewController() as? Self {
-            return vc
-        } else if let vc = storyboard.instantiateViewController(withIdentifier: "\(self)") as? Self {
-            return vc
+        if let viewController = storyboard.instantiateInitialViewController() as? Self {
+            return viewController
+        } else if let viewController = storyboard.instantiateViewController(withIdentifier: "\(self)") as? Self {
+            return viewController
         } else {
             fatalError("\(self) not found")
         }

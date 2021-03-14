@@ -41,20 +41,16 @@ final class NetworkService: NetworkServiceProtocol {
                 if let error = error {
                     completion(.failure(error))
                 }
-                
                 guard let data = data else {
                     completion(.failure(NetworkError.emptyData))
                     return
                 }
-                
                 guard let result = try? JSONDecoder().decode([T].self, from: data) else {
                     completion(.failure(NetworkError.failedDecoding))
                     return
                 }
-                
                 completion(.success(result))
-            }
-            .resume()
+            }.resume()
         }
     }
     
@@ -64,20 +60,16 @@ final class NetworkService: NetworkServiceProtocol {
                 if let error = error {
                     completion(.failure(error))
                 }
-                
                 guard let data = data else {
                     completion(.failure(NetworkError.emptyData))
                     return
                 }
-                
                 guard let result = try? JSONDecoder().decode(T.self, from: data) else {
                     completion(.failure(NetworkError.failedDecoding))
                     return
                 }
-                
                 completion(.success(result))
-            }
-            .resume()
+            }.resume()
         }
     }
     
