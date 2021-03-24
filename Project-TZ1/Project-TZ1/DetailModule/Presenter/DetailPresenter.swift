@@ -13,7 +13,7 @@ protocol DetailViewProtocol: class {
     func failure(error: Error)
 }
 
-protocol DetailViewPresenterProtocol: class {
+protocol DetailPresenterProtocol: class {
     func fetchMedia()
     var filePhotoUrl: URL? { get set }
     var fileMovieUrl: URL? { get set }
@@ -34,20 +34,17 @@ enum FileType {
     }
 }
 
-class DetailPresenter: DetailViewPresenterProtocol {
+class DetailPresenter: DetailPresenterProtocol {
     
     weak var view: DetailViewProtocol?
-    var networkService: NetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     var photo: Photos?
     var filePhotoUrl: URL?
     var fileMovieUrl: URL?
     private let dispatchGroup = DispatchGroup()
     
-    
-    init(view: DetailViewProtocol, networkService: NetworkServiceProtocol, photo: Photos) {
-        self.view = view
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
-        self.photo = photo
     }
     
     func fetchMedia() {

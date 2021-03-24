@@ -12,21 +12,21 @@ protocol MainViewProtocol: class {
     func showError(error: Error)
 }
 
-protocol MainViewPresenterProtocol: class {
+protocol MainPresenterProtocol: class {
     func getPhotos()
     var photos: [Photos] { get set }
 }
 
-class MainPresenter: MainViewPresenterProtocol {
+class MainPresenter: MainPresenterProtocol {
     
     weak var view: MainViewProtocol?
-    let networkService: NetworkServiceProtocol
+    private let networkService: NetworkServiceProtocol
     var photos: [Photos] = []
-    private let dispatchGroup = DispatchGroup()
+    private let dispatchGroup: DispatchGroup
     
-    init(view: MainViewProtocol, networkService: NetworkServiceProtocol ) {
-        self.view = view
+    init(networkService: NetworkServiceProtocol, dispatchGroup: DispatchGroup) {
         self.networkService = networkService
+        self.dispatchGroup = dispatchGroup
     }
     
     func getPhotos() {

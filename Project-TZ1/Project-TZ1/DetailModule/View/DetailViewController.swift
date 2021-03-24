@@ -12,12 +12,16 @@ final class DetailViewController: UIViewController, DetailViewProtocol {
     
     @IBOutlet private weak var mediaView: UIView!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
-    var presenter: DetailViewPresenterProtocol!
+    var presenter: DetailPresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         startSpinner()
         presenter.fetchMedia()
+    }
+    
+    func set(photo: Photos) {
+        presenter.photo = photo
     }
     
     func test(livePhoto: PHLivePhoto?) {
