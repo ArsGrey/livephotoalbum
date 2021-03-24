@@ -22,10 +22,11 @@ class MainPresenter: MainPresenterProtocol {
     weak var view: MainViewProtocol?
     private let networkService: NetworkServiceProtocol
     var photos: [Photos] = []
-    private let dispatchGroup = DispatchGroup()
+    private let dispatchGroup: DispatchGroup
     
-    init(networkService: NetworkServiceProtocol ) {
+    init(networkService: NetworkServiceProtocol, dispatchGroup: DispatchGroup) {
         self.networkService = networkService
+        self.dispatchGroup = dispatchGroup
     }
     
     func getPhotos() {

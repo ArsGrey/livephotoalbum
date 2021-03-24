@@ -10,6 +10,9 @@ import DITranquillity
 
 final class MainBLDIPart: DIPart {
     static func load(container: DIContainer) {
+        container.register(DispatchGroup.init)
+            .lifetime(.objectGraph)
+        
         container.register(MainPresenter.init)
             .as(check: MainPresenterProtocol.self) {$0}
             .injection(cycle: true, \.view)
