@@ -24,6 +24,4 @@ final class MainViewProtocolMock: MainViewProtocol {
     func showError(error: Error) {
         
     }
-    
-    
 }
