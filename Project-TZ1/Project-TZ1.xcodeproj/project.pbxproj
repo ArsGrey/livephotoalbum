@@ -24,6 +24,11 @@
 		A32C76D725FC0F48004F39BB /* VCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C76D625FC0F48004F39BB /* VCExtension.swift */; };
 		A32C76DB25FC1D5F004F39BB /* BusinessLogicDIFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C76DA25FC1D5F004F39BB /* BusinessLogicDIFramework.swift */; };
 		A32C76DE25FC1D77004F39BB /* UserInterfaceDIFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32C76DD25FC1D77004F39BB /* UserInterfaceDIFramework.swift */; };
+		A338DF4A260CBE7D009393FF /* DetailPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF49260CBE7D009393FF /* DetailPresenterTest.swift */; };
+		A338DF53260CBEB8009393FF /* DetailViewProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF52260CBEB8009393FF /* DetailViewProtocolMock.swift */; };
+		A338DF57260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF56260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift */; };
+		A338DF5B2613137D009393FF /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF5A2613137D009393FF /* FileService.swift */; };
+		A338DF632613394D009393FF /* FileServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF622613394D009393FF /* FileServiceMock.swift */; };
 		A34259F825DF282100A39ABE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34259F725DF282100A39ABE /* API.swift */; };
 		A34259FD25E435B100A39ABE /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A34259FC25E435B100A39ABE /* DetailViewController.storyboard */; };
 		A3AA6CDA25F7C2D700203B0B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AA6CD925F7C2D700203B0B /* MainViewModel.swift */; };
@@ -76,6 +81,11 @@
 		A32C76D625FC0F48004F39BB /* VCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCExtension.swift; sourceTree = "<group>"; };
 		A32C76DA25FC1D5F004F39BB /* BusinessLogicDIFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessLogicDIFramework.swift; sourceTree = "<group>"; };
 		A32C76DD25FC1D77004F39BB /* UserInterfaceDIFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceDIFramework.swift; sourceTree = "<group>"; };
+		A338DF49260CBE7D009393FF /* DetailPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenterTest.swift; sourceTree = "<group>"; };
+		A338DF52260CBEB8009393FF /* DetailViewProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewProtocolMock.swift; sourceTree = "<group>"; };
+		A338DF56260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenterNetworkServiceMock.swift; sourceTree = "<group>"; };
+		A338DF5A2613137D009393FF /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
+		A338DF622613394D009393FF /* FileServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServiceMock.swift; sourceTree = "<group>"; };
 		A34259F725DF282100A39ABE /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A34259FC25E435B100A39ABE /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		A3AA6CD925F7C2D700203B0B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +133,7 @@
 			children = (
 				47A0A526260B879100DFDBA5 /* Helpers */,
 				47A0A525260B877D00DFDBA5 /* MainModule */,
+				A338DF4D260CBE8C009393FF /* DetailModule */,
 				47A0A524260B876900DFDBA5 /* Resources */,
 				47A0A518260B7BEA00DFDBA5 /* Project_TZ1Tests.swift */,
 				47A0A4E4260B514700DFDBA5 /* Info.plist */,
@@ -204,6 +215,17 @@
 				A32C76D625FC0F48004F39BB /* VCExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A338DF4D260CBE8C009393FF /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				A338DF49260CBE7D009393FF /* DetailPresenterTest.swift */,
+				A338DF56260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift */,
+				A338DF52260CBEB8009393FF /* DetailViewProtocolMock.swift */,
+				A338DF622613394D009393FF /* FileServiceMock.swift */,
+			);
+			path = DetailModule;
 			sourceTree = "<group>";
 		};
 		A3B6759225F665D100C919B1 /* Helpers */ = {
@@ -301,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				A3FEAED525C4A61B00246569 /* NetworkService.swift */,
+				A338DF5A2613137D009393FF /* FileService.swift */,
 				A3B6759425F665F000C919B1 /* API */,
 			);
 			path = Service;
@@ -539,6 +562,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				47A0A4FB260B529C00DFDBA5 /* MainViewProtocolMock.swift in Sources */,
+				A338DF632613394D009393FF /* FileServiceMock.swift in Sources */,
+				A338DF53260CBEB8009393FF /* DetailViewProtocolMock.swift in Sources */,
+				A338DF4A260CBE7D009393FF /* DetailPresenterTest.swift in Sources */,
+				A338DF57260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift in Sources */,
 				47A0A4F3260B523700DFDBA5 /* MainPresenterTest.swift in Sources */,
 				47A0A519260B7BEA00DFDBA5 /* Project_TZ1Tests.swift in Sources */,
 				47A0A4F7260B526900DFDBA5 /* MainPresenterNetworkServiceMock.swift in Sources */,
@@ -559,6 +586,7 @@
 				A34259F825DF282100A39ABE /* API.swift in Sources */,
 				A32C76C725FB5667004F39BB /* MainBLDIPart.swift in Sources */,
 				A3FEAEAB25C464B500246569 /* AppDelegate.swift in Sources */,
+				A338DF5B2613137D009393FF /* FileService.swift in Sources */,
 				A32C76DE25FC1D77004F39BB /* UserInterfaceDIFramework.swift in Sources */,
 				A3FEAEE125C5957500246569 /* MainCollectionViewCell.swift in Sources */,
 				A3FEAEAD25C464B500246569 /* SceneDelegate.swift in Sources */,

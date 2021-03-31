@@ -38,13 +38,16 @@ class DetailPresenter: DetailPresenterProtocol {
     
     weak var view: DetailViewProtocol?
     private let networkService: NetworkServiceProtocol
+    let fileTypeUrl: FileServiceProtocol
     var photo: Photos?
     var filePhotoUrl: URL?
     var fileMovieUrl: URL?
-    private let dispatchGroup = DispatchGroup()
+    private let dispatchGroup: DispatchGroup
     
-    init(networkService: NetworkServiceProtocol) {
+    init(networkService: NetworkServiceProtocol, dispatchGroup: DispatchGroup, fileTypeUrl: FileServiceProtocol) {
         self.networkService = networkService
+        self.dispatchGroup = dispatchGroup
+        self.fileTypeUrl = fileTypeUrl
     }
     
     func fetchMedia() {
@@ -65,7 +68,8 @@ class DetailPresenter: DetailPresenterProtocol {
         networkService.downloadData(url: url, group: dispatchGroup) { [weak self] result in
             switch result {
             case .success(let url):
-                self?.saveData(url: url, fileType: .photo(UUID()))
+                self?.filePhotoUrl = self?.fileTypeUrl.saveFile(by: url, with: .photo(UUID()))
+                self?.dispatchGroup.leave()
             case.failure(let error):
                 self?.view?.failure(error: error)
                 self?.dispatchGroup.leave()
@@ -79,28 +83,12 @@ class DetailPresenter: DetailPresenterProtocol {
         networkService.downloadData(url: url, group: dispatchGroup) { [weak self] result in
             switch result {
             case .success(let url):
-                self?.saveData(url: url, fileType: .movie(UUID()))
+                self?.fileMovieUrl = self?.fileTypeUrl.saveFile(by: url, with: .movie(UUID()))
+                self?.dispatchGroup.leave()
             case .failure(let error):
                 self?.view?.failure(error: error)
                 self?.dispatchGroup.leave()
             }
-        }
-    }
-    
-    private func saveData(url: URL, fileType: FileType) {
-        guard let cache = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return }
-        do {
-            let file = cache.appendingPathComponent(fileType.rawValue)
-            try FileManager.default.moveItem(at: url, to: file)
-            switch fileType {
-            case .photo:
-                self.filePhotoUrl = file
-            case .movie:
-                self.fileMovieUrl = file
-            }
-            dispatchGroup.leave()
-        } catch {
-            print(error.localizedDescription)
         }
     }
 }

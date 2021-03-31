@@ -13,6 +13,10 @@ final class ApplicationDI: DIFramework {
         container.register(NetworkService.init)
             .as(check: NetworkServiceProtocol.self) {$0}
             .lifetime(.perContainer(.weak))
+        
+        container.register(FileService.init)
+            .as(check: FileServiceProtocol.self) {$0}
+            .lifetime(.perContainer(.weak))
     }
     
     static let container: DIContainer = {

@@ -9,6 +9,7 @@ import Foundation
 
 enum CallType: String {
     case mainViewShowPhotos
+    case detailViewShowMedia
 }
 
 final class CallRecorder {
