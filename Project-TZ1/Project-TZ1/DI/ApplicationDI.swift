@@ -14,8 +14,8 @@ final class ApplicationDI: DIFramework {
             .as(check: NetworkServiceProtocol.self) {$0}
             .lifetime(.perContainer(.weak))
         
-        container.register(FileTypeUrl.init)
-            .as(check: FileTypeUrlProtocol.self) {$0}
+        container.register(FileService.init)
+            .as(check: FileServiceProtocol.self) {$0}
             .lifetime(.perContainer(.weak))
     }
     

@@ -27,8 +27,8 @@
 		A338DF4A260CBE7D009393FF /* DetailPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF49260CBE7D009393FF /* DetailPresenterTest.swift */; };
 		A338DF53260CBEB8009393FF /* DetailViewProtocolMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF52260CBEB8009393FF /* DetailViewProtocolMock.swift */; };
 		A338DF57260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF56260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift */; };
-		A338DF5B2613137D009393FF /* FileTypeUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF5A2613137D009393FF /* FileTypeUrl.swift */; };
-		A338DF632613394D009393FF /* FileTypeUrlMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF622613394D009393FF /* FileTypeUrlMock.swift */; };
+		A338DF5B2613137D009393FF /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF5A2613137D009393FF /* FileService.swift */; };
+		A338DF632613394D009393FF /* FileServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A338DF622613394D009393FF /* FileServiceMock.swift */; };
 		A34259F825DF282100A39ABE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34259F725DF282100A39ABE /* API.swift */; };
 		A34259FD25E435B100A39ABE /* DetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A34259FC25E435B100A39ABE /* DetailViewController.storyboard */; };
 		A3AA6CDA25F7C2D700203B0B /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AA6CD925F7C2D700203B0B /* MainViewModel.swift */; };
@@ -84,8 +84,8 @@
 		A338DF49260CBE7D009393FF /* DetailPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenterTest.swift; sourceTree = "<group>"; };
 		A338DF52260CBEB8009393FF /* DetailViewProtocolMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewProtocolMock.swift; sourceTree = "<group>"; };
 		A338DF56260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenterNetworkServiceMock.swift; sourceTree = "<group>"; };
-		A338DF5A2613137D009393FF /* FileTypeUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeUrl.swift; sourceTree = "<group>"; };
-		A338DF622613394D009393FF /* FileTypeUrlMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypeUrlMock.swift; sourceTree = "<group>"; };
+		A338DF5A2613137D009393FF /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
+		A338DF622613394D009393FF /* FileServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServiceMock.swift; sourceTree = "<group>"; };
 		A34259F725DF282100A39ABE /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		A34259FC25E435B100A39ABE /* DetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailViewController.storyboard; sourceTree = "<group>"; };
 		A3AA6CD925F7C2D700203B0B /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 				A338DF49260CBE7D009393FF /* DetailPresenterTest.swift */,
 				A338DF56260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift */,
 				A338DF52260CBEB8009393FF /* DetailViewProtocolMock.swift */,
-				A338DF622613394D009393FF /* FileTypeUrlMock.swift */,
+				A338DF622613394D009393FF /* FileServiceMock.swift */,
 			);
 			path = DetailModule;
 			sourceTree = "<group>";
@@ -323,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				A3FEAED525C4A61B00246569 /* NetworkService.swift */,
-				A338DF5A2613137D009393FF /* FileTypeUrl.swift */,
+				A338DF5A2613137D009393FF /* FileService.swift */,
 				A3B6759425F665F000C919B1 /* API */,
 			);
 			path = Service;
@@ -562,7 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47A0A4FB260B529C00DFDBA5 /* MainViewProtocolMock.swift in Sources */,
-				A338DF632613394D009393FF /* FileTypeUrlMock.swift in Sources */,
+				A338DF632613394D009393FF /* FileServiceMock.swift in Sources */,
 				A338DF53260CBEB8009393FF /* DetailViewProtocolMock.swift in Sources */,
 				A338DF4A260CBE7D009393FF /* DetailPresenterTest.swift in Sources */,
 				A338DF57260CC26C009393FF /* DetailPresenterNetworkServiceMock.swift in Sources */,
@@ -586,7 +586,7 @@
 				A34259F825DF282100A39ABE /* API.swift in Sources */,
 				A32C76C725FB5667004F39BB /* MainBLDIPart.swift in Sources */,
 				A3FEAEAB25C464B500246569 /* AppDelegate.swift in Sources */,
-				A338DF5B2613137D009393FF /* FileTypeUrl.swift in Sources */,
+				A338DF5B2613137D009393FF /* FileService.swift in Sources */,
 				A32C76DE25FC1D77004F39BB /* UserInterfaceDIFramework.swift in Sources */,
 				A3FEAEE125C5957500246569 /* MainCollectionViewCell.swift in Sources */,
 				A3FEAEAD25C464B500246569 /* SceneDelegate.swift in Sources */,

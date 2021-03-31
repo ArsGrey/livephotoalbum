@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol FileTypeUrlProtocol {
-    func fetchFileTypeUrl(url: URL, fileType: FileType) -> URL?
+protocol FileServiceProtocol {
+    func saveFile(by url: URL, with fileType: FileType) -> URL?
 }
 
-final class FileTypeUrl: FileTypeUrlProtocol {
+final class FileService: FileServiceProtocol {
 
-    func fetchFileTypeUrl(url: URL, fileType: FileType) -> URL? {
+    func saveFile(by url: URL, with fileType: FileType) -> URL? {
         guard let cache = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else { return nil }
         do {
             let file = cache.appendingPathComponent(fileType.rawValue)
@@ -24,6 +24,7 @@ final class FileTypeUrl: FileTypeUrlProtocol {
             case .movie:
                 return file
             }
+    
         } catch {
             print(error.localizedDescription)
             return nil

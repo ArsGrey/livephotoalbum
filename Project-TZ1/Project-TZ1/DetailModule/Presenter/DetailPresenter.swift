@@ -38,13 +38,13 @@ class DetailPresenter: DetailPresenterProtocol {
     
     weak var view: DetailViewProtocol?
     private let networkService: NetworkServiceProtocol
-    let fileTypeUrl: FileTypeUrlProtocol
+    let fileTypeUrl: FileServiceProtocol
     var photo: Photos?
     var filePhotoUrl: URL?
     var fileMovieUrl: URL?
     private let dispatchGroup: DispatchGroup
     
-    init(networkService: NetworkServiceProtocol, dispatchGroup: DispatchGroup, fileTypeUrl: FileTypeUrlProtocol) {
+    init(networkService: NetworkServiceProtocol, dispatchGroup: DispatchGroup, fileTypeUrl: FileServiceProtocol) {
         self.networkService = networkService
         self.dispatchGroup = dispatchGroup
         self.fileTypeUrl = fileTypeUrl
@@ -68,7 +68,7 @@ class DetailPresenter: DetailPresenterProtocol {
         networkService.downloadData(url: url, group: dispatchGroup) { [weak self] result in
             switch result {
             case .success(let url):
-                self?.filePhotoUrl = self?.fileTypeUrl.fetchFileTypeUrl(url: url, fileType: .photo(UUID()))
+                self?.filePhotoUrl = self?.fileTypeUrl.saveFile(by: url, with: .photo(UUID()))
                 self?.dispatchGroup.leave()
             case.failure(let error):
                 self?.view?.failure(error: error)
@@ -83,7 +83,7 @@ class DetailPresenter: DetailPresenterProtocol {
         networkService.downloadData(url: url, group: dispatchGroup) { [weak self] result in
             switch result {
             case .success(let url):
-                self?.fileMovieUrl = self?.fileTypeUrl.fetchFileTypeUrl(url: url, fileType: .movie(UUID()))
+                self?.fileMovieUrl = self?.fileTypeUrl.saveFile(by: url, with: .movie(UUID()))
                 self?.dispatchGroup.leave()
             case .failure(let error):
                 self?.view?.failure(error: error)

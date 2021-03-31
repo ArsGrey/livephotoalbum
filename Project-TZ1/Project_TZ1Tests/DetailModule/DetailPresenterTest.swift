@@ -28,11 +28,11 @@ class DetailPresenterTest: XCTestCase {
             .as(check: NetworkServiceProtocol.self) {$0}
             .lifetime(.perContainer(.weak))
         
-        container.register(FileTypeUrlMock.init)
-            .as(check: FileTypeUrlProtocol.self) {$0}
+        container.register(FileServiceMock.init)
+            .as(check: FileServiceProtocol.self) {$0}
             .lifetime(.perContainer(.weak))
         
-        container.register { DetailPresenter.init(networkService: $0, dispatchGroup: $1, fileTypeUrl: $2) }
+        container.register(DetailPresenter.init)
             .as(check: DetailPresenterProtocol.self) {$0}
             .injection(cycle: true, \.view)
             .lifetime(.objectGraph)

@@ -9,8 +9,8 @@ import Foundation
 import XCTest
 @testable import Project_TZ1
 
-final class FileTypeUrlMock: FileTypeUrlProtocol {
-    func fetchFileTypeUrl(url: URL, fileType: FileType) -> URL? {
+final class FileServiceMock: FileServiceProtocol {
+    func saveFile(by: URL, with: FileType) -> URL? {
         DataMock().createUrlMock()
     }
 }
