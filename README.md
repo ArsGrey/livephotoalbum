@@ -2,8 +2,8 @@
 # LivePhotoAlbum
 В приложении вы можете увидеть коллекцию live картинок, а так же сохранить любую из них в фотопленку вашего телефона
 
-![screenshot](Users/simba/Desktop/collectionPhoto.png)
-![screenshot](Users/simba/Desktop/livePhoto.png)
+![screenshot](https://github.com/ArsGrey/livephotoalbum/blob/main/Screenshots/Снимок%20экрана%202021-04-12%20в%2016.23.10.png)
+![screenshot](https://github.com/ArsGrey/livephotoalbum/blob/main/Screenshots/Снимок%20экрана%202021-04-12%20в%2016.24.54.png)
 
 # Release Notes
 1. [1.0.0](https://github.com/ArsGrey/livephotoalbum/commit/eb5f715f97d9b4a0535fa6ceceac37e7bdded919)
